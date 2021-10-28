@@ -65,6 +65,46 @@ class ViewController: UITableViewController {
         dvc.detailItem = petitions[indexPath.row]
         navigationController?.pushViewController(dvc, animated: true)
     }
+    @IBAction func credits(_ sender: UIBarButtonItem) {
+        let ac = UIAlertController(title: "We The People API", message: "The data comes from the We The People API of the Whitehouse", preferredStyle: .alert)
+        ac.addAction(UIAlertAction(title: "Good", style: .default))
+        present(ac, animated: true)
+    }
+    @IBAction func search(_ sender: UIBarButtonItem) {
+ 
+        // create alert
+        let ac = UIAlertController(title: "Filter petitions", message: nil, preferredStyle: .alert)
+        // add text field
+        ac.addTextField()
+        
+        // create filter alert button
+        let submitAction = UIAlertAction(title: "Filter", style: .default) {
+            // parameters we send into
+            [weak self, weak ac] _ in
+            // closure body
+            guard let answer = ac?.textFields?[0].text else {return}
+            self?.filter(answer)
+        }
+        
+        // add created button
+        ac.addAction(submitAction)
+        // present alert
+        present(ac, animated: true)
+        
+    }
 
+    
+    func filter(_ answer: String) {
+        var filteredPetitions = [Petition]()
+        
+        for petition in petitions {
+            if petition.title.contains(answer) || petition.body.contains(answer){
+                filteredPetitions.append(petition)
+            }
+        }
+        petitions = filteredPetitions
+        tableView.reloadData()
+    }
+    
 }
 

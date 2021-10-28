@@ -46,7 +46,18 @@
                             <outlet property="delegate" destination="HGx-ob-HJ5" id="ds6-bf-kgo"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="C26-PY-wL5"/>
+                    <navigationItem key="navigationItem" id="C26-PY-wL5">
+                        <barButtonItem key="leftBarButtonItem" systemItem="search" id="Vga-mN-Fbj">
+                            <connections>
+                                <action selector="search:" destination="HGx-ob-HJ5" id="Iqy-px-Uyd"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Credits" id="odu-za-bh5">
+                            <connections>
+                                <action selector="credits:" destination="HGx-ob-HJ5" id="Ita-sd-eah"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LXT-8X-k7t" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
