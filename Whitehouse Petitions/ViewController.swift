@@ -10,6 +10,7 @@ import UIKit
 class ViewController: UITableViewController {
     
     var petitions = [Petition]()
+    var oldPetitions = [Petition]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,6 +42,7 @@ class ViewController: UITableViewController {
         
         if let jsonPetitions = try? decoder.decode(Petitions.self, from: json){
             petitions = jsonPetitions.results
+            oldPetitions = petitions
             tableView.reloadData()
         }
     }
@@ -71,6 +73,8 @@ class ViewController: UITableViewController {
         present(ac, animated: true)
     }
     @IBAction func search(_ sender: UIBarButtonItem) {
+        
+        petitions = oldPetitions
  
         // create alert
         let ac = UIAlertController(title: "Filter petitions", message: nil, preferredStyle: .alert)
